@@ -1,0 +1,5918 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extreport
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing other 0.5
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 1cm
+\rightmargin 2cm
+\bottommargin 2cm
+\headheight 0.5cm
+\headsep 1cm
+\footskip 0.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Tecnicas Digitales II
+\begin_inset Newline newline
+\end_inset
+
+Proyecto Final 
+\begin_inset Newline newline
+\end_inset
+
+4R2
+\end_layout
+
+\begin_layout Author
+Campetella, Nazareno 78006
+\begin_inset Newline newline
+\end_inset
+
+Vera Causich, Mariano 66878
+\begin_inset Newline newline
+\end_inset
+
+Rosso, Guido 67756
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+\noindent
+Introducción
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En el siguiente informe explayaremos el proyecto final basado en programacion
+ C en placa Raspberry.
+ Para este proyecto utilizamos el modelo Raspberry Pi 3 B y su sistema operativo
+ Raspbian (Devian para Raspberry).
+ Este modelo añade conección LAN inalambrica y Bluetooth, tiene un procesador
+ Boardcom BCM 2937 de 64 bit Quad Core y set de intrucciones ARMv7 tambien
+ memoria RAM de 1GB a 400MHz.
+ Lo cual la hace un poderoso computador de pequeño tamaño e infinididad
+ de usos.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename D:/Facultad/4to año/Tecnicas digitales 2/SC14013-40.jpg
+	lyxscale 45
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Tambien utilizaremos una placa adicional desarrollada por la catedra y hecha
+ por nosotros, esta nos servira para demostrar la mayoria de los programas
+ realizados.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename D:/Facultad/4to año/Tecnicas digitales 2/Captura de pantalla 2021-01-29 200120.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+Aparte realizamos la compra de un modulo conversor Pcf8591 que lo utilizaremos
+ para seleccionar la velocidad inicial de cada secuencia.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename D:/Facultad/4to año/Tecnicas digitales 2/modulo.png
+	scale 60
+	rotateOrigin center
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con respecto a la comunicación en serie usamos el adaptador conversor de
+ usb a serie ttl cp2102.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename D:/Facultad/4to año/Tecnicas digitales 2/conversor.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+Desarrollo
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Menu
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Empezaremos el desarrollo mostrando el Menu principal de nuestro programa
+ y todas sus opciones.
+ De este iremos derivando todos y cada uno de los programas usados para
+ ver más a fondo la codificación de estos.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+\begin_inset space ~
+\end_inset
+
+ //incluimos todos los programas externos a Menu 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "2Passw.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "3ConfiguracionIO.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "4Autofantastico.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "5Carrera.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "6Apilada.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "7Choque.c"
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "8Sec1_cortina.c"
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "9Sec2_gusano.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "10Sec3_barrido.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "11Sec4_navidad.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "12Contador.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "13Comuraspi.c" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+\begin_inset space ~
+\end_inset
+
+ //14SeriePC.c va en la computadora 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "15Seteoveloci.c"
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+\begin_inset space ~
+\end_inset
+
+ //Incluimos librerias usadas poor Menu
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include <stdio.h> 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include "easypio.h" 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+#include <wiringPi.h>
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+\begin_inset space ~
+\end_inset
+
+ //Inicializacion de variables
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+int led[8]={23,24,25,12,16,20,21,26},pulsadores[2]={17,27},llaves[4]={5,6,13,19}
+, contador=50000,m,psw=0,serial_port;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+int main() {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+int s,b=0,aux; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Password(); //Llamado a funcion Password en passw.c
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+if(psw==1){ //Si la contrasenia es correcta retorna 1 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Configuracion(); //Llamado a funcion Configuracion de entrada/salida en
+ configuracionIO.c 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+while(1){ //Menu principal 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+system("clear"); 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+if(b==0) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+printf ("BIENVENIDO AL SISTEMA
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+b=1; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+printf ("Funciones de luces:
+\backslash
+n
+\backslash
+n1-Auto Fantastico
+\backslash
+n2-Carrera
+\backslash
+n3-Apilada
+\backslash
+n4-Choque
+\backslash
+n5-Cortina
+\backslash
+n6-Gusano
+\backslash
+n7-Barrido
+\backslash
+n8-Navidad
+\backslash
+n
+\backslash
+nOtras funciones:
+\backslash
+n
+\backslash
+n9-Comunicacion Serie
+\backslash
+n10-Cambio de velocidad
+\backslash
+n
+\backslash
+n11-Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+scanf("%d",&s); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+getchar(); 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+\begin_inset space ~
+\end_inset
+
+ //Lector de opcion elegida 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+switch(s){ 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+case 1:{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+aux=contador; //Variable auxiliar para respaldar la variable original de
+ contador 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+AutoFantastico(); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+contador=aux; //Respaldo 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 2:{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Carrera(); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 3:{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Apilada(); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 4:{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Choque(); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 5:{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Cortina(); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 6:{
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Gusano(); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break;
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 7:{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Barrido(); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 8:{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+Navidad(); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 9: { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+Comunicacion_serie(); //Llamado a comunicacion serie entre raspberry y PC
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} Conclusión
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 10: { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+Velocidad_inicial(); //Configuracion de velocidad inicial
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+case 11: { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+return 0;
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+default:{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+printf ("
+\backslash
+nSeleccion no valida
+\backslash
+n
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+delayMillis(1000); 
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+break; 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+\paragraph_spacing single
+}
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\paragraph_spacing single
+}
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+return 0;
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing single
+} 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename D:/Facultad/4to año/Tecnicas digitales 2/Captura de pantalla 2021-01-11 183033.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Contraseña
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al ejecutar nuestro programa Menu lo primero que se ejecutara sera el programa
+ Password el cual nos pedira la contraseña del sistema y nos dejara acceder
+ a este hasta que la coloquemos correctamente, de no ser posible tres intentos
+ el programa se cerrara.
+ Para esto utilizamos la libreria curses que necesitamos instalar en nuestro
+ raspbian A continuación dejaremos la codificación del programa Password
+ con sus respectivos comentarios.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <curses.h> 
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Description
+#define tam 6 
+\emph on
+//Tamanio de constrasenia 
+\end_layout
+
+\begin_layout Description
+#define intro 10 
+\emph on
+//valor ASCII de enter
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int psw; 
+\emph on
+//Flag de Menu
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Password(void){
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+char password[tam];
+\end_layout
+
+\begin_layout Description
+char contra[]="bokee"; 
+\end_layout
+
+\begin_layout Description
+int pos,p,ch,u,i,k=0; 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+noecho(); 
+\emph on
+//Iniciamos modo que permite Ncurses, que tiene la funcion no mostrar lo
+ que ingresa el usuario 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+for(u=0;u<3;u++){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+p=0; 
+\end_layout
+
+\begin_layout Description
+pos=0; 
+\end_layout
+
+\begin_layout Description
+k=0; 
+\end_layout
+
+\begin_layout Description
+system ("clear"); 
+\end_layout
+
+\begin_layout Description
+printw ("Ingrese la contrasenia:
+\backslash
+n"); 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+while(true){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+ch=getch();
+\end_layout
+
+\begin_layout Description
+if (ch == intro) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+printw("%c", '*'); 
+\end_layout
+
+\begin_layout Description
+password[pos++] = ch; 
+\end_layout
+
+\begin_layout Description
+password[pos] = '
+\backslash
+0';
+\end_layout
+
+\begin_layout Description
+k++; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Description
+for(i=0;i<tam;i++) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+if(k>=6){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+printw("Contrasenia no valida 
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+p=1;
+\end_layout
+
+\begin_layout Description
+break;
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(password[i]!=contra[i]) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+printw ("Contrasenia no valida 
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+p=1; 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(p==0) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+printw ("
+\backslash
+nBIENVENIDO AL SISTEMA
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+psw=1; 
+\end_layout
+
+\begin_layout Description
+break;
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+if(p==1) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+printw("
+\backslash
+nDemasiados Intentos"); 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+getch(); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+endwin();
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Chapter*
+Configuracion de entradas y salidas con EasyPIO
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo segundo que ejecutaremos en nuestro programa sera la configuracion de
+ leds, pulsadores y llaves de nuestra Raspberry Pi por medio de la libreria
+ EasyPIO.
+ Este programa inicializa todo lo que usaremos en las secuencias de luces
+ solicitadas.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include "easypio.h"
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[]; 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Configuracion(void) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+pioInit(); 
+\end_layout
+
+\begin_layout Description
+\begin_inset space ~
+\end_inset
+
+ 
+\emph on
+//Inicializacion de leds 
+\end_layout
+
+\begin_layout Description
+for (int i=0;i<8;i++){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+pinMode (led[i],OUTPUT); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+\begin_inset space ~
+\end_inset
+
+ //Inicializacion de pulsadores
+\end_layout
+
+\begin_layout Description
+for (int i=0;i<2;i++){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+pinMode (pulsadores[i],INPUT); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+
+\emph on
+\begin_inset space ~
+\end_inset
+
+ //Inicializacion de llaves
+\emph default
+ 
+\end_layout
+
+\begin_layout Description
+for (int i=0;i<4;i++){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+pinMode (llaves[i],INPUT); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Chapter*
+Contador
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Antes de ir a los codigos de las secuencias de luces explicaremos el programa
+ Contador que usaremos en todas estas secuencias ya que sera el control
+ para cada una de ellas, ya sea para finalizar los programas o para aumentar
+ y disminuir su velocidad.
+ Este constara de dos tipos de manejo, puede ser manejado de forma local
+ desde Raspberry Pi o tambien manejado de forma remota desde una PC por
+ medio de comunicación en serie (Esta sera explicada mas adelante con sus
+ respectivos codigos).
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include "easypio.h" Conclusión
+\end_layout
+
+\begin_layout Description
+#include <stdio.h> 
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h> 
+\end_layout
+
+\begin_layout Description
+#include <wiringPi.h> 
+\end_layout
+
+\begin_layout Description
+#include <wiringSerial.h>
+\end_layout
+
+\begin_layout Description
+#include <errno.h> 
+\end_layout
+
+\begin_layout Description
+#include <string.h>
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[],m,contador,serial_port;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+int Contador(void) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int i=0,j=0,b=0;
+\end_layout
+
+\begin_layout Description
+char dat='w'; /
+\emph on
+/Inicializamos con un valor que no seleccione ningun opcion
+\end_layout
+
+\begin_layout Description
+for (int c=0;c<contador;c++) { 
+\end_layout
+
+\begin_layout Description
+\begin_inset space ~
+\end_inset
+
+ 
+\emph on
+//Manejo desde pc 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+if (serialDataAvail(serial_port)) 
+\emph on
+//Verifica que el puerto este disponible devolviendo el numero 1, en caso
+ contrario -1
+\emph default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+dat = serialGetchar (serial_port);
+\emph on
+ //Retorna el proximo caracter disponible en el puerto
+\emph default
+ 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if (dat=='s' || dat=='u' || dat=='d')
+\emph on
+ //s:salir u:up d:down
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{
+\end_layout
+
+\begin_layout Description
+if(dat=='s') 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ for(int ba=0;ba<8;ba++) 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite (led[ba],0); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Description
+return 1; //Si ponemos " exit (1) " sale de todo el programa, y estamos
+ buscando que salga de la secuencia.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if (dat=='d' && contador > 10000) 
+\emph on
+//Disminuye el delay producido por contador
+\emph default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+contador= contador - 5000; 
+\end_layout
+
+\begin_layout Description
+printf("%d
+\backslash
+n",contador); 
+\end_layout
+
+\begin_layout Description
+i++; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if (dat=='u' && contador < 90000) 
+\emph on
+//Aumenta el delay producido por contador 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+contador= contador + 5000;
+\end_layout
+
+\begin_layout Description
+printf("%d
+\backslash
+n",contador); 
+\end_layout
+
+\begin_layout Description
+j++; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+
+\emph on
+\begin_inset space ~
+\end_inset
+
+ //Manejo desde Raspberry 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+if ((digitalRead(pulsadores[0]) && digitalRead(pulsadores[1])) ) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+for(int ba=0;ba<8;ba++) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+digitalWrite (led[ba],0); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Description
+return 1; 
+\emph on
+//Volver al menu principal 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if (digitalRead(pulsadores[0]) && i<1 && contador < 90000 ) 
+\emph on
+//Aumenta el delay producido por contador
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+contador= contador + 5000; 
+\end_layout
+
+\begin_layout Description
+printf("%d
+\backslash
+n",contador); 
+\end_layout
+
+\begin_layout Description
+i++; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if (digitalRead(pulsadores[1]) && j<1 && contador>10000)//Disminuye el delay
+ producido por contador
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+contador= contador - 5000; 
+\end_layout
+
+\begin_layout Description
+printf("%d
+\backslash
+n",contador); 
+\end_layout
+
+\begin_layout Description
+j++;
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+return 0; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Chapter*
+Secuencias de luces
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Autofantastico
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include "easypio.h" 
+\end_layout
+
+\begin_layout Description
+#include <stdio.h>
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h>
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[],m; 
+\end_layout
+
+\begin_layout Description
+int Contador(void);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void AutoFantastico (void) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int i; 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("Auto Fantastico
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("Manejo local:
+\backslash
+nPara salir presione los dos pulsadores
+\backslash
+nManejo Remoto:
+\backslash
+nPara salir presione s
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+while (m==0)
+\emph on
+ //condicion para que siga ejecutandose la secuencia 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+for (i=0;i<8;i++) 
+\emph on
+//recorrido de led 0 al 7
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite (led [i], 1); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\emph on
+//mientras la funcion contador no devuelva un 1 seguira ejectuandose
+\end_layout
+
+\begin_layout Description
+if(m==1) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+digitalWrite (led [i], 0); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+for (i=7;i>-1;i--) 
+\emph on
+//recorrido de led 7 al 0 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite (led [i], 1); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+digitalWrite (led [i], 0); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+m=0; 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\begin_layout Section*
+Carrera
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include "easypio.h" 
+\end_layout
+
+\begin_layout Description
+#include <stdio.h>
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h>
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[],m; 
+\end_layout
+
+\begin_layout Description
+int Contador(void); 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Carrera(void) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int h,k;
+\end_layout
+
+\begin_layout Description
+int tabla [16][8]= {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{1,0,0,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{1,0,0,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{0,1,0,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{0,1,0,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,1,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,1,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,1,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,1,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{1,0,0,0,1,0,0,0},
+\end_layout
+
+\begin_layout Description
+{0,1,0,0,1,0,0,0},
+\end_layout
+
+\begin_layout Description
+{0,0,1,0,0,1,0,0},
+\end_layout
+
+\begin_layout Description
+{0,0,0,1,0,1,0,0},
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,1,0,1,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,1,1,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,0,1,1}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,0,0,1} 
+\end_layout
+
+\begin_layout Description
+}; 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+system ("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("Carrera
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("Manejo local:
+\backslash
+nPara salir presione los dos pulsadores
+\backslash
+nManejo Remoto:
+\backslash
+nPara salir presione s
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+while (m==0) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+for (k=0;k<16;k++) 
+\emph on
+//Recorrido de filas 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break;
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+for (h=0;h<8;h++) 
+\emph on
+//Recorrido de columnas 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite (led [h],tabla [k][h]);
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+m=0; 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\begin_layout Section*
+Apilada
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <stdio.h> 
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h> 
+\end_layout
+
+\begin_layout Description
+#include "easypio.h"
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+int Contador(void);
+\end_layout
+
+\begin_layout Description
+extern int led[],m;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Apilada(void){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int i,j;
+\end_layout
+
+\begin_layout Description
+system ("clear");
+\end_layout
+
+\begin_layout Description
+printf ("Apilada
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printf ("Manejo local:
+\backslash
+nPara salir presione los dos pulsadores
+\backslash
+nManejo Remoto:
+\backslash
+nPara salir presione s
+\backslash
+n");
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+while(m==0){
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+for(j=7;j>-1;j--){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+for(i=0;i<=j;i++){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+digitalWrite(led[i],1); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+digitalWrite(led[i],0); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+digitalWrite(led[j],1); 
+\end_layout
+
+\begin_layout Description
+delayMillis(200); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[j],0); 
+\end_layout
+
+\begin_layout Description
+delayMillis(200); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[j],1); 
+\end_layout
+
+\begin_layout Description
+delayMillis(200); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[j],0); 
+\end_layout
+
+\begin_layout Description
+delayMillis(200); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[j],1); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+for(i=0;i<8;i++){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+digitalWrite(led[i],0); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+m=0; 
+\end_layout
+
+\begin_layout Description
+system ("clear");
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\begin_layout Section*
+Choque
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <stdio.h>
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h> 
+\end_layout
+
+\begin_layout Description
+#include "easypio.h"
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[],m; 
+\end_layout
+
+\begin_layout Description
+int Contador(void);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Choque(void){
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int i=0; 
+\end_layout
+
+\begin_layout Description
+system ("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("El Choque
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("Manejo local:
+\backslash
+nPara salir presione los dos pulsadores
+\backslash
+nManejo Remoto:
+\backslash
+nPara salir presione s
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+while(m==0) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+for(i=0;i<4;i++) 
+\emph on
+//recorrido hacia adentro
+\emph default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[i],1); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[7-i],1); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+digitalWrite(led[i],0); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[7-i],0); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+for(i=3;i>-1;i--) 
+\emph on
+//recorrido hacia afuera 
+\end_layout
+
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[i],1); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[7-i],1); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+digitalWrite(led[i],0); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[7-i],0);
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break;
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\begin_layout Description
+m=0; 
+\end_layout
+
+\begin_layout Description
+system ("clear"); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\begin_layout Section*
+Cortina
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <stdio.h>
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h> 
+\end_layout
+
+\begin_layout Description
+#include "easypio.h"
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[],m;
+\end_layout
+
+\begin_layout Description
+int Contador(void);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Cortina(void) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int i; 
+\end_layout
+
+\begin_layout Description
+system ("clear");
+\end_layout
+
+\begin_layout Description
+printf ("Cortina
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printf ("Manejo local:
+\backslash
+nPara salir presione los dos pulsadores
+\backslash
+nManejo Remoto:
+\backslash
+nPara salir presione s
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+while(m==0) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+for(i=0;i<8;i++) 
+\emph on
+//Enciendo todos los leds
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[i],1); 
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Description
+for(i=0;i<8;i++) 
+\emph on
+//Apaga todos los leds 
+\end_layout
+
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[i],0);
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Description
+m=0; 
+\end_layout
+
+\begin_layout Description
+system ("clear");
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Gusano
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <stdio.h> 
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h> 
+\end_layout
+
+\begin_layout Description
+#include "easypio.h"
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[],m; 
+\end_layout
+
+\begin_layout Description
+int Contador(void);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Gusano(void){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int i,k; 
+\end_layout
+
+\begin_layout Description
+system ("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("Gusano
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("Manejo local:
+\backslash
+nPara salir presione los dos pulsadores
+\backslash
+nManejo Remoto:
+\backslash
+nPara salir presione s
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+int tabla[15][8]= { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{0,0,0,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{1,0,0,0,0,0,0,0},
+\end_layout
+
+\begin_layout Description
+{0,1,0,0,0,0,0,0},
+\end_layout
+
+\begin_layout Description
+{1,0,1,0,0,0,0,0},
+\end_layout
+
+\begin_layout Description
+{0,1,0,1,0,0,0,0},
+\end_layout
+
+\begin_layout Description
+{1,0,1,0,1,0,0,0},
+\end_layout
+
+\begin_layout Description
+{0,1,0,1,0,1,0,0},
+\end_layout
+
+\begin_layout Description
+{1,0,1,0,1,0,1,0}, 
+\end_layout
+
+\begin_layout Description
+{0,1,0,1,0,1,0,1},
+\end_layout
+
+\begin_layout Description
+{0,0,1,0,1,0,1,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,1,0,1,0,1}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,1,0,1,0},
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,1,0,1},
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,0,1,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,0,0,1}, 
+\end_layout
+
+\begin_layout Description
+}; 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+while(m==0) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+for(k=0;k<15;k++) 
+\emph on
+//Recorrido de filas 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+for(i=0;i<8;i++) 
+\emph on
+//Recorrido de columnas 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[i],tabla[k][i]);
+\end_layout
+
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Description
+m=0; 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\begin_layout Section*
+Barrido
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <stdio.h>
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h> 
+\end_layout
+
+\begin_layout Description
+#include "easypio.h"
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[],contador,m;
+\end_layout
+
+\begin_layout Description
+int Contador(void);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Barrido(void){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int i,k; 
+\end_layout
+
+\begin_layout Description
+system ("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("Barrido
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("Manejo local:
+\backslash
+nPara salir presione los dos pulsadores
+\backslash
+nManejo Remoto:
+\backslash
+nPara salir presione s
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+int tabla[17][8]= {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{0,0,0,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{1,0,0,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{1,1,0,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{0,1,1,0,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,1,1,0,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{1,0,0,1,1,0,0,0}, 
+\end_layout
+
+\begin_layout Description
+{1,1,0,0,1,1,0,0},
+\end_layout
+
+\begin_layout Description
+{0,1,1,0,0,1,1,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,1,1,0,0,1,1}, 
+\end_layout
+
+\begin_layout Description
+{1,0,0,1,1,0,0,1},
+\end_layout
+
+\begin_layout Description
+{1,1,0,0,1,1,0,0},
+\end_layout
+
+\begin_layout Description
+{0,1,1,0,0,1,1,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,1,1,0,0,1,1},
+\end_layout
+
+\begin_layout Description
+{0,0,0,1,1,0,0,1},
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,1,1,0}, 
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,0,1,1},
+\end_layout
+
+\begin_layout Description
+{0,0,0,0,0,0,0,1}, 
+\end_layout
+
+\begin_layout Description
+};
+\end_layout
+
+\end_deeper
+\begin_layout Description
+while(m==0) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+for(k=0;k<17;k++) 
+\emph on
+//Recorrido de filas 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+for(i=0;i<8;i++) 
+\emph on
+//Recorrido de columnas
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led[i],tabla[k][i]); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+m=0; 
+\end_layout
+
+\begin_layout Description
+system ("clear");
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Section*
+Navidad
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <stdio.h> 
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Description
+#include "easypio.h"
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int led[],pulsadores[],llaves[],m; 
+\end_layout
+
+\begin_layout Description
+int Contador(void);
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Navidad(void){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int i; 
+\end_layout
+
+\begin_layout Description
+system ("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("Navidad
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("Manejo local:
+\backslash
+nPara salir presione los dos pulsadores
+\backslash
+nManejo Remoto:
+\backslash
+nPara salir presione s
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+while(m==0) { 
+\end_layout
+
+\begin_layout Description
+for(i=0;i<8;i=i+2) 
+\emph on
+//Encendido de leds pares y apagado de led impares
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led [i],1); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led [i+1],0);
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+for(i=1;i<8;i=i+2) 
+\emph on
+//Encendido de leds impares y apagado de led pares 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led [i-1],0); 
+\end_layout
+
+\begin_layout Description
+digitalWrite(led [i],1); }
+\end_layout
+
+\end_deeper
+\begin_layout Description
+m=Contador(); 
+\end_layout
+
+\begin_layout Description
+if(m==1){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Description
+m=0; 
+\end_layout
+
+\begin_layout Description
+system ("clear");
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Chapter*
+Comunicación serie
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Receptor de datos en Raspberry
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Primero explayaremos como realizamos el codigo para recibir datos en Raspberry
+ para controlar las distintas secuencias solicitadas.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <stdio.h> 
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h> 
+\end_layout
+
+\begin_layout Description
+#include <wiringPi.h> 
+\end_layout
+
+\begin_layout Description
+#include <wiringSerial.h> 
+\end_layout
+
+\begin_layout Description
+#include <errno.h> 
+\end_layout
+
+\begin_layout Description
+#include <string.h>
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int serial_port;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Comunicacion_serie(void) { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int aux,p=0; 
+\end_layout
+
+\begin_layout Description
+char str; 
+\end_layout
+
+\begin_layout Description
+serial_port = serialOpen ("/dev/serial0", 9600); 
+\emph on
+//Abre el puerto serie si todo esta en orden
+\emph default
+ 
+\end_layout
+
+\begin_layout Description
+if ( serial_port < 0){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+fprintf (stderr, "ERROR: %s
+\backslash
+n", strerror (errno));
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if (wiringPiSetup () == -1){ 
+\emph on
+//Inicia configuracion de wiringPi 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+fprintf (stdout, "ERROR: %s
+\backslash
+n", strerror (errno)) ;
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+system ("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("Comunicacion serie:
+\backslash
+n
+\backslash
+nIngrese un numero 
+\backslash
+n
+\backslash
+t1-Auto Fantastico
+\backslash
+n
+\backslash
+t2-Carrera
+\backslash
+n
+\backslash
+t3-Apilada
+\backslash
+n
+\backslash
+t4-Choque
+\backslash
+n
+\backslash
+t5-Cortina
+\backslash
+n
+\backslash
+t6-Gusano
+\backslash
+n
+\backslash
+t7-Barrido
+\backslash
+n
+\backslash
+t8-Navidad
+\backslash
+n
+\backslash
+n
+\backslash
+t9-Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("Recibiendo datos desde el otro dispositivo
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+str= serialGetchar(serial_port); 
+\emph on
+//Almacena el dato en la variable str
+\end_layout
+
+\begin_layout Description
+printf ("%c", str); serialFlush(serial_port); 
+\emph on
+//Limpia el bus de datos 
+\end_layout
+
+\begin_layout Description
+switch(str){
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+case '1': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+aux=contador; 
+\emph on
+//Variable auxiliar para respaldar la variable original de contador
+\end_layout
+
+\begin_layout Description
+AutoFantastico(); 
+\end_layout
+
+\begin_layout Description
+contador=aux; 
+\emph on
+//Respaldo
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '2': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+Carrera(); 
+\end_layout
+
+\begin_layout Description
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '3': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+aux=contador;
+\end_layout
+
+\begin_layout Description
+Apilada(); 
+\end_layout
+
+\begin_layout Description
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '4': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+Choque(); 
+\end_layout
+
+\begin_layout Description
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '5': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+Cortina(); 
+\end_layout
+
+\begin_layout Description
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '6': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+Gusano(); 
+\end_layout
+
+\begin_layout Description
+contador=aux;
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '7': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+Barrido(); 
+\end_layout
+
+\begin_layout Description
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+break;
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '8': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+aux=contador; 
+\end_layout
+
+\begin_layout Description
+Navidad(); 
+\end_layout
+
+\begin_layout Description
+contador=aux; 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '9': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+p=1; //Asigna el valor 1 a p para salir de la sentencia do/while
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+default: {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+printf ("
+\backslash
+nSeleccion no valida
+\backslash
+n
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+delay(1000); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(p!=1);
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\begin_layout Section*
+Transmisor de datos desde PC
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El siguiente codigo es utilizado para enviar datos tanto al receptor de
+ datos de rasberry como al programa Contador para subir velocidad, bajar
+ velocidad o salir de la secuencia que se esta ejecutando.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <curses.h> 
+\end_layout
+
+\begin_layout Description
+#include <termios.h>
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+int main(){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int fd,a=0,ch,q; 
+\end_layout
+
+\begin_layout Description
+char c[2];
+\end_layout
+
+\begin_layout Description
+char opt; 
+\end_layout
+
+\begin_layout Description
+\begin_inset space ~
+\end_inset
+
+ //CREAR ARCHIVO 
+\end_layout
+
+\begin_layout Description
+\begin_inset space ~
+\end_inset
+
+ //O_WRONLY abre el archivo "/dev/ttyUSB0" en modo escritura 
+\end_layout
+
+\begin_layout Description
+\begin_inset space ~
+\end_inset
+
+ //S_IRUSR|S_IWUSR son los modos que seleccione: Lectura y Escritura para
+ el usuario 
+\end_layout
+
+\begin_layout Description
+fd = open("/dev/ttyUSB0",O_WRONLY|S_IRUSR|S_IWUSR); 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+if (fd != -1){ 
+\emph on
+//Verificamos si hay error al abrir el puerto
+\emph default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("Comunicacion serie:
+\backslash
+n
+\backslash
+nIngrese un numero 
+\backslash
+n
+\backslash
+t1-Auto Fantastico
+\backslash
+n
+\backslash
+t2-Carrera
+\backslash
+n
+\backslash
+t3-Apilada
+\backslash
+n
+\backslash
+t4-Choque
+\backslash
+n
+\backslash
+t5-Cortina
+\backslash
+n
+\backslash
+t6-Gusano
+\backslash
+n
+\backslash
+t7-Barrido
+\backslash
+n
+\backslash
+t8-Navidad
+\backslash
+n
+\backslash
+n
+\backslash
+t9-Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+ch='x'; 
+\end_layout
+
+\begin_layout Description
+a=0; 
+\end_layout
+
+\begin_layout Description
+scanf ("%s",&opt); 
+\end_layout
+
+\begin_layout Description
+switch(opt){ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+case '1': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"1"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+clear(); 
+\end_layout
+
+\begin_layout Description
+printw ("La secuencia se esta ejecutando
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printw ("Opciones:
+\backslash
+n
+\backslash
+n
+\backslash
+tUP=Subir Velocidad
+\backslash
+n
+\backslash
+tDOWN=Bajar Velocidad
+\backslash
+n
+\backslash
+ts=Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+q=getch(); 
+\emph on
+//ESC o s
+\end_layout
+
+\begin_layout Description
+if(q==115) 
+\emph on
+// ASCII de s 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"s"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+a=1; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+getch();
+\emph on
+ //[ 
+\end_layout
+
+\begin_layout Description
+ch=getch(); 
+\emph on
+// A o B 
+\end_layout
+
+\begin_layout Description
+if(ch==65) 
+\emph on
+//ASCII de A 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"u"); 
+\emph on
+//Copia s a la variable c
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\emph on
+//Copia el contenido de c en fd
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\emph on
+//Limpia el bus de datos
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(ch==66) //ASCII de B 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"d"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(a!=1); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+endwin(); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '2': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"2"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+clear(); 
+\end_layout
+
+\begin_layout Description
+printw ("La secuencia se esta ejecutando
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printw ("Opciones:
+\backslash
+n
+\backslash
+n
+\backslash
+tUP=Subir Velocidad
+\backslash
+n
+\backslash
+tDOWN=Bajar Velocidad
+\backslash
+n
+\backslash
+ts=Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+q=getch(); 
+\emph on
+//ESC o s
+\end_layout
+
+\begin_layout Description
+if(q==115) 
+\emph on
+// ASCII de s 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"s"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+a=1; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+getch();
+\emph on
+ //[ 
+\end_layout
+
+\begin_layout Description
+ch=getch(); 
+\emph on
+// A o B 
+\end_layout
+
+\begin_layout Description
+if(ch==65) 
+\emph on
+//ASCII de A 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"u"); 
+\emph on
+//Copia s a la variable c
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\emph on
+//Copia el contenido de c en fd
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\emph on
+//Limpia el bus de datos
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(ch==66) //ASCII de B 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"d"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(a!=1); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+endwin(); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+case '3': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"3"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+clear(); 
+\end_layout
+
+\begin_layout Description
+printw ("La secuencia se esta ejecutando
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printw ("Opciones:
+\backslash
+n
+\backslash
+n
+\backslash
+tUP=Subir Velocidad
+\backslash
+n
+\backslash
+tDOWN=Bajar Velocidad
+\backslash
+n
+\backslash
+ts=Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+q=getch(); 
+\emph on
+//ESC o s
+\end_layout
+
+\begin_layout Description
+if(q==115) 
+\emph on
+// ASCII de s 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"s"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+a=1; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+getch();
+\emph on
+ //[ 
+\end_layout
+
+\begin_layout Description
+ch=getch(); 
+\emph on
+// A o B 
+\end_layout
+
+\begin_layout Description
+if(ch==65) 
+\emph on
+//ASCII de A 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"u"); 
+\emph on
+//Copia s a la variable c
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\emph on
+//Copia el contenido de c en fd
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\emph on
+//Limpia el bus de datos
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(ch==66) //ASCII de B 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"d"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(a!=1); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+endwin(); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Description
+case '4': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"4"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+clear(); 
+\end_layout
+
+\begin_layout Description
+printw ("La secuencia se esta ejecutando
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printw ("Opciones:
+\backslash
+n
+\backslash
+n
+\backslash
+tUP=Subir Velocidad
+\backslash
+n
+\backslash
+tDOWN=Bajar Velocidad
+\backslash
+n
+\backslash
+ts=Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+q=getch(); 
+\emph on
+//ESC o s
+\end_layout
+
+\begin_layout Description
+if(q==115) 
+\emph on
+// ASCII de s 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"s"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+a=1; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+getch();
+\emph on
+ //[ 
+\end_layout
+
+\begin_layout Description
+ch=getch(); 
+\emph on
+// A o B 
+\end_layout
+
+\begin_layout Description
+if(ch==65) 
+\emph on
+//ASCII de A 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"u"); 
+\emph on
+//Copia s a la variable c
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\emph on
+//Copia el contenido de c en fd
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\emph on
+//Limpia el bus de datos
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(ch==66) //ASCII de B 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"d"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(a!=1); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+endwin(); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '5': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"5"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+clear(); 
+\end_layout
+
+\begin_layout Description
+printw ("La secuencia se esta ejecutando
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printw ("Opciones:
+\backslash
+n
+\backslash
+n
+\backslash
+tUP=Subir Velocidad
+\backslash
+n
+\backslash
+tDOWN=Bajar Velocidad
+\backslash
+n
+\backslash
+ts=Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+q=getch(); 
+\emph on
+//ESC o s
+\end_layout
+
+\begin_layout Description
+if(q==115) 
+\emph on
+// ASCII de s 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"s"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+a=1; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+getch();
+\emph on
+ //[ 
+\end_layout
+
+\begin_layout Description
+ch=getch(); 
+\emph on
+// A o B 
+\end_layout
+
+\begin_layout Description
+if(ch==65) 
+\emph on
+//ASCII de A 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"u"); 
+\emph on
+//Copia s a la variable c
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\emph on
+//Copia el contenido de c en fd
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\emph on
+//Limpia el bus de datos
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(ch==66) //ASCII de B 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"d"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(a!=1); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+endwin(); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '6': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"6"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+clear(); 
+\end_layout
+
+\begin_layout Description
+printw ("La secuencia se esta ejecutando
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printw ("Opciones:
+\backslash
+n
+\backslash
+n
+\backslash
+tUP=Subir Velocidad
+\backslash
+n
+\backslash
+tDOWN=Bajar Velocidad
+\backslash
+n
+\backslash
+ts=Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+q=getch(); 
+\emph on
+//ESC o s
+\end_layout
+
+\begin_layout Description
+if(q==115) 
+\emph on
+// ASCII de s 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"s"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+a=1; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+getch();
+\emph on
+ //[ 
+\end_layout
+
+\begin_layout Description
+ch=getch(); 
+\emph on
+// A o B 
+\end_layout
+
+\begin_layout Description
+if(ch==65) 
+\emph on
+//ASCII de A 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"u"); 
+\emph on
+//Copia s a la variable c
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\emph on
+//Copia el contenido de c en fd
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\emph on
+//Limpia el bus de datos
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(ch==66) //ASCII de B 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"d"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(a!=1); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+endwin(); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '7': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"7"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+clear(); 
+\end_layout
+
+\begin_layout Description
+printw ("La secuencia se esta ejecutando
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printw ("Opciones:
+\backslash
+n
+\backslash
+n
+\backslash
+tUP=Subir Velocidad
+\backslash
+n
+\backslash
+tDOWN=Bajar Velocidad
+\backslash
+n
+\backslash
+ts=Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+q=getch(); 
+\emph on
+//ESC o s
+\end_layout
+
+\begin_layout Description
+if(q==115) 
+\emph on
+// ASCII de s 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"s"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+a=1; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+getch();
+\emph on
+ //[ 
+\end_layout
+
+\begin_layout Description
+ch=getch(); 
+\emph on
+// A o B 
+\end_layout
+
+\begin_layout Description
+if(ch==65) 
+\emph on
+//ASCII de A 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"u"); 
+\emph on
+//Copia s a la variable c
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\emph on
+//Copia el contenido de c en fd
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\emph on
+//Limpia el bus de datos
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(ch==66) //ASCII de B 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"d"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(a!=1); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+endwin(); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '8': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"8"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+initscr(); 
+\emph on
+//Iniciamos el modo Ncurses 
+\end_layout
+
+\begin_layout Description
+clear(); 
+\end_layout
+
+\begin_layout Description
+printw ("La secuencia se esta ejecutando
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+printw ("Opciones:
+\backslash
+n
+\backslash
+n
+\backslash
+tUP=Subir Velocidad
+\backslash
+n
+\backslash
+tDOWN=Bajar Velocidad
+\backslash
+n
+\backslash
+ts=Salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+echo(); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+q=getch(); 
+\emph on
+//ESC o s
+\end_layout
+
+\begin_layout Description
+if(q==115) 
+\emph on
+// ASCII de s 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"s"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+a=1; 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+getch();
+\emph on
+ //[ 
+\end_layout
+
+\begin_layout Description
+ch=getch(); 
+\emph on
+// A o B 
+\end_layout
+
+\begin_layout Description
+if(ch==65) 
+\emph on
+//ASCII de A 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"u"); 
+\emph on
+//Copia s a la variable c
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\emph on
+//Copia el contenido de c en fd
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\emph on
+//Limpia el bus de datos
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+if(ch==66) //ASCII de B 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+{ 
+\end_layout
+
+\begin_layout Description
+strcpy(c,"d"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(a!=1); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+endwin(); 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+case '9': { 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+strcpy(c,"9"); 
+\end_layout
+
+\begin_layout Description
+write(fd,&c,sizeof(c)); 
+\end_layout
+
+\begin_layout Description
+fflush(stdin); 
+\end_layout
+
+\begin_layout Description
+opt='0'; 
+\end_layout
+
+\begin_layout Description
+break; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}while(opt!='0'); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+printf("
+\backslash
+nSalida"); 
+\end_layout
+
+\begin_layout Description
+close(fd); 
+\emph on
+//CERRAR ARCHIVO
+\emph default
+ 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\begin_layout Chapter*
+Velocidad inicial
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#include <stdio.h> 
+\end_layout
+
+\begin_layout Description
+#include <stdlib.h>
+\end_layout
+
+\begin_layout Description
+#include <wiringPi.h>
+\end_layout
+
+\begin_layout Description
+#include <wiringPiI2C.h>
+\end_layout
+
+\begin_layout Description
+#include <pcf8591.h>
+\end_layout
+
+\begin_layout Description
+#include "easypio.h" 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+#define Address 0x48 
+\end_layout
+
+\begin_layout Description
+#define BASE 64 
+\end_layout
+
+\begin_layout Description
+#define A BASE + 3
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+extern int pulsadores[], contador;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+void Velocidad_inicial(void){
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+int val; 
+\end_layout
+
+\begin_layout Description
+if (wiringPiSetup () == -1) {
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+exit (1); 
+\end_layout
+
+\begin_layout Description
+}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+pcf8591Setup(BASE, Address); 
+\end_layout
+
+\begin_layout Description
+do{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("Posicione el potenciometro para seleccionar el contador inicial,
+ luego pulse los dos pulsadores para salir
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("El contador tiene que ser mayor a 10000
+\backslash
+n");
+\end_layout
+
+\begin_layout Description
+val = (analogRead(A)*314)+10000; 
+\emph on
+//Lectura de conversor y escalado
+\end_layout
+
+\begin_layout Description
+printf ("Valor = %d 
+\backslash
+n", val); 
+\end_layout
+
+\begin_layout Description
+if(val<10000){ 
+\emph on
+//Limite del valor inferior 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+printf ("Seleccione otra velocidad porque es menor que la permitida
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+printf ("Velocidad = 10000
+\backslash
+n"); 
+\end_layout
+
+\begin_layout Description
+contador=10000; 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+else{ 
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+contador=val; 
+\end_layout
+
+\begin_layout Description
+printf("Velocidad = %d 
+\backslash
+n", val); 
+\end_layout
+
+\begin_layout Description
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+delay(200); 
+\end_layout
+
+\begin_layout Description
+}while(!digitalRead(pulsadores[1])&&!digitalRead(pulsadores[0])); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+system("clear"); 
+\end_layout
+
+\begin_layout Description
+printf ("La velocidad quedo fijada en: %d 
+\backslash
+n", contador); 
+\end_layout
+
+\begin_layout Description
+delay (1000); 
+\end_layout
+
+\end_deeper
+\begin_layout Description
+}
+\end_layout
+
+\begin_layout Part*
+Conclusión
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para finalizar recalcamos el proyecto sobretodo por la introducción a programaci
+ón sobre Raspberry y sus poderosas herramientas.
+ Al empezar el proyecto aparte de volcar los contenidos desarrollados en
+ la catedra debimos refrescarnos de conocimientos de materias anteriores
+ como Informatica I y II que necesitamos para manipular Linux y las comunicacion
+es solicitadas.
+ Tambien nos sirvio de buena practica de programación el hecho de realizar
+ funciones por separado e incluirlas en un menu principal, ya que es muy
+ comodo sobretodo para encontrar y solucionar errores.
+\begin_inset Newline newline
+\end_inset
+
+Encontramos dificultades a la hora de conectar los programas externos al
+ menu principal ya que al hacerlo de la forma tradicional nos daba errores,
+ esto se soluciono incluyendolos con la función #Include a cada función
+ en el menu principal.
+\begin_inset Newline newline
+\end_inset
+
+ Utilizamos el metodo de testeo de cada función antes de incluirla en el
+ menu principal para estar seguros que cada una funcione por separado.
+\begin_inset Newline newline
+\end_inset
+
+El hecho de estar en una epoca especial de distanciamiento tambien dificulto
+ la comunicación entre los integrantes y principalmente el intercambio y
+ compra de materiales.
+ Esto nos hizo demorar mas de lo debido ya que la solución a cada problema
+ tenia doble esfuerzo.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
